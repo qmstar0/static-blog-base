@@ -3,9 +3,7 @@ uri: test
 title: "Markdown 语法测试"
 createdAt: 1717521516
 category: 探索日志
-tags:
-  - python
-  - Go
+
 desc: '
 Markdown是一种轻量级标记语言，设计目的是以简洁的语法使文档易于书写和阅读，同时可以转换成丰富的HTML格式。
 

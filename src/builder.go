@@ -6,9 +6,7 @@ import (
 	"github.com/charmbracelet/log"
 	"html/template"
 	"os"
-	"os/exec"
 	"path/filepath"
-	"runtime"
 	"sync"
 )
 
@@ -30,7 +28,6 @@ type BuilderConfig struct {
 	ContentDir  string `yaml:"content_dir" toml:"content_dir" mapstructure:"content_dir"`
 	OutputDir   string `yaml:"output_dir" toml:"output_dir" mapstructure:"output_dir"`
 	TemplateDir string `yaml:"template_dir" toml:"template_dir" mapstructure:"template_dir"`
-	AssetsDir   string `yaml:"assets_dir" toml:"assets_dir" mapstructure:"assets_dir"`
 	AutoClear   bool   `yaml:"auto_clear" toml:"auto_clear" mapstructure:"auto_clear"`
 }
 
@@ -89,9 +86,6 @@ func NewBuilder(config BuilderConfig) *Builder {
 func (b *Builder) Build() {
 	if b.Config.AutoClear {
 		ClearDir(b.Config.OutputDir)
-	}
-	if b.Config.AssetsDir != "" {
-		b.CopyAssets(b.Config.AssetsDir, b.Config.OutputDir)
 	}
 
 	b.BuildIndex(".")
@@ -198,24 +192,5 @@ func (b *Builder) BuildPages(dir string, posts []Post, perPageNum int) {
 		); err != nil {
 			log.Fatal("向文件写入数据时", "err", err)
 		}
-	}
-}
-
-func (b *Builder) CopyAssets(from, to string) {
-	var err error
-	var output []byte
-	target := filepath.Join(to, from)
-	switch goos := runtime.GOOS; goos {
-	case "windows":
-		output, err = exec.Command("xcopy", from, target, "/E", "/I", "/H").Output()
-	case "linux", "darwin":
-		output, err = exec.Command("mkdir", target).Output()
-		command := exec.Command("cp", "-r", "-v", from, target)
-		log.Info(command.String())
-		output, err = command.Output()
-	}
-	log.Info(string(output))
-	if err != nil {
-		log.Fatal("拷贝静态资源时", "err", err)
 	}
 }
