@@ -1,0 +1,32 @@
+name: Deploy static website to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/**'       # 监控 assets 目录下的所有文件
+      - 'content/**'
+      - 'template/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.22'  # 使用的 Go 版本
+
+      - name: Run Go program
+        run: go run ./src/  # 运行你的 Go 程序
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output  # 静态文件的目录

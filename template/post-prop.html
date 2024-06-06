@@ -1,0 +1,25 @@
+<div class="my-2 text-[14px] text-[--color-subtopic] flex">
+    <div class="mr-1 text-center my-auto">
+        <time class="block">{{- timestamp .CreatedAt -}}</time>
+    </div>
+
+    {{- if .Category -}}
+    <div class="mr-1 text-center my-auto"><span class="block">|</span></div>
+    <div class="mr-1 text-center my-auto">
+        <a href="/categories/{{- .Category -}}" class="hover:underline">
+            <span class="block">{{- .Category -}}</span>
+        </a>
+    </div>
+    {{- end -}}
+
+    {{- if len .Tags -}}
+    <div class="hidden xl:flex mr-1 text-center my-auto"><span class="block">|</span></div>
+    <div class="hidden xl:flex mr-1 text-center my-auto block">
+        {{- range .Tags -}}
+        <a href="/tags/{{- . -}}" class="hidden xl:flex mr-2 hover:underline tag-item">
+            <span>{{- . -}}</span>
+        </a>
+        {{- end -}}
+    </div>
+    {{- end -}}
+</div>

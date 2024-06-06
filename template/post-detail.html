@@ -1,0 +1,36 @@
+<html lang="zh">
+<head>
+    {{- template "head.html" -}}
+    <title>{{- .Post.Title -}}|于野 Blog</title>
+</head>
+
+<body>
+
+<div class="frame mx-auto my-0 max-w-[100%] flex flex-col">
+    {{- template "header.html" -}}
+    <div class="p-2 flex-1">
+        <main id="app" class="float-left xl:w-[75%] xl:pr-[5%] mb-8 w-[100%] p-0 ease-in-out duration-100">
+            <article>
+                <header>
+                    <h1>{{- .Post.Title -}}</h1>
+                    {{- template "post-prop.html" .Post -}}
+                </header>
+                {{- template "post-desc.html" .Post -}}
+                <main>
+                    {{- .Post.Content -}}
+                </main>
+                <hr/>
+                <div class="highlight">
+                    {{- template "post-prop.html" .Post -}}
+                </div>
+            </article>
+        </main>
+        <aside class="float-right xl:w-[25%] mb-8 w-[100%] p-0">
+            {{- template "aside.html" .Aside -}}
+        </aside>
+    </div>
+    {{- template "footer.html" -}}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<article>
+    <header>
+        <h2>
+            <a href="/post/{{- .Uri -}}">{{- .Title -}}</a>
+        </h2>
+        {{- template "post-prop.html" . -}}
+    </header>
+
+    {{- template "post-desc.html" . -}}
+
+    <div class="mt-4 flex flex-row-reverse">
+        <A href="/post/{{- .Uri -}}" class="underline p-1">
+            <span>阅读全部</span>
+        </A>
+    </div>
+</article>

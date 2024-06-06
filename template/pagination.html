@@ -1,0 +1,29 @@
+<div id="pagination" class="py-4 text-center font-[lxgw]">
+    <ul class="flex flex-row justify-center [&>li]:mx-2 [&>li]:select-none">
+        {{ if .prev }}
+        <li class="cursor-auto">
+            <a href="?page={{ .prev }}">上一页</a>
+        </li>
+        <li class="cursor-pointer">
+            <a href="?page={{ .prev }}">{{ .prev }}</a>
+        </li>
+        {{ else }}
+        <li class="cursor-pointer cursor-auto text-[--color-subtopic]">上一页</li>
+        {{ end }}
+
+        <li class="underline cursor-auto">
+            <a href="?page={{ .page }}">{{ .page }}</a>
+        </li>
+
+        {{ if .next }}
+        <li class="cursor-pointer">
+            <a href="?page={{ .next }}">{{ .next }}</a>
+        </li>
+        <li class="cursor-auto">
+            <a href="?page={{ .next }}">下一页</a>
+        </li>
+        {{ else }}
+        <li class="cursor-pointer text-[--color-subtopic]">下一页</li>
+        {{ end }}
+    </ul>
+</div>

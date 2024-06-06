@@ -1,0 +1,35 @@
+<html lang="zh">
+<head>
+    {{- template "head.html" -}}
+    <title>于野 探索日志 | Blog</title>
+</head>
+
+<body>
+
+<div class="frame mx-auto my-0 max-w-[100%] flex flex-col">
+    {{- template "header.html" -}}
+    <div class="p-2 flex-1">
+        <main id="app" class="float-left xl:w-[75%] xl:pr-[5%] mb-8 w-[100%] p-0 ease-in-out duration-100">
+        </main>
+        <aside class="float-right xl:w-[25%] mb-8 w-[100%] p-0">
+            {{- template "aside.html" . -}}
+        </aside>
+    </div>
+    {{- template "footer.html" -}}
+</div>
+
+</body>
+
+<script>
+    (async function () {
+        const href = new URL(window.location.href)
+        const urlParams = new URLSearchParams(href.search);
+        const paramValue = urlParams.get('page') ? urlParams.get('page') : 1;
+        const pathname = href.pathname.endsWith("/") ? href.pathname : href.pathname + "/"
+        const posts = await fetch(`${href.origin}${pathname}page_${paramValue}.html`).then(res => res.text())
+        document.querySelector("#app").innerHTML = posts
+
+
+    })()
+</script>
+</html>
