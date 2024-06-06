@@ -25,9 +25,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-#    environment:
-#      name: github-pages
-#      url: ${{ steps.deployment.outputs.page_url }}
+    #    environment:
+    #      name: github-pages
+    #      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,9 +49,9 @@ jobs:
           name: github-pages
           path: ./output
 
-#      - name: Deploy to GitHub Pages
-#        id: deployment
-#        uses: actions/deploy-pages@v4
+  #      - name: Deploy to GitHub Pages
+  #        id: deployment
+  #        uses: actions/deploy-pages@v4
   #      - name: Deploy to GitHub Pages
   #        uses: peaceiris/actions-gh-pages@v4
   #        with:
@@ -59,15 +59,11 @@ jobs:
   #          github_token: ${{ secrets.GITHUB_TOKEN }}
   #          publish_branch: gh-pages  # 发布到 gh-pages 分支
   deploy:
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-
       # Deploy to the github-pages environment
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
+    needs: build
     runs-on: ubuntu-latest
     # Specify runner + deployment step
     steps:
