@@ -11,7 +11,7 @@ Markdown是一种轻量级标记语言，设计目的是以简洁的语法使文
 该帖子用于markdown转成html后的效果测试
 
 
-访问该项目的github地址[static blog base](https://github.com/qmstar0/static_blog_base)以了解该网站是如何部署、生成的
+访问该项目的github地址[static blog base](https://github.com/qmstar0/static-blog-base)以了解该网站是如何部署、生成的
 '
 ---
 
