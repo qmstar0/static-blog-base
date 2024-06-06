@@ -32,3 +32,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           publish_dir: ./output  # 静态文件的目录
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          publish_branch: gh-pages  # 发布到 gh-pages 分支
