@@ -1,6 +1,6 @@
-content_dir = "content"
-output_dir = "output"
-template_dir = "template"
-assets_dir = "assets"
+content_dir = "./content"
+output_dir = "./output"
+template_dir = "./template"
+assets_dir = "./assets"
 auto_clear = true
 
