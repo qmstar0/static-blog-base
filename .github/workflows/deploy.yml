@@ -2,7 +2,8 @@ name: Deploy static website to GitHub Pages
 
 
 permissions:
-  contents: write
+  contents: 'read'
+  id-token: 'write'
 
 on:
   workflow_dispatch:
