@@ -210,10 +210,6 @@ func (b *Builder) CopyAssets(from, to string) {
 		output, err = exec.Command("xcopy", from, target, "/E", "/I", "/H").Output()
 	case "linux", "darwin":
 		output, err = exec.Command("mkdir", target).Output()
-		log.Info(string(output))
-		if err != nil {
-			log.Fatal("拷贝静态资源时", "err", err)
-		}
 		command := exec.Command("cp", "-r", "-v", from, target)
 		log.Info(command.String())
 		output, err = command.Output()

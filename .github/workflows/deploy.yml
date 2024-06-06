@@ -40,6 +40,9 @@ jobs:
       - name: Run Go program
         run: go run ./src/  # 运行你的 Go 程序
 
+      - name: copy  assets
+        run: cp -r ./assets  ./output/assets
+
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
