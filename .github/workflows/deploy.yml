@@ -9,6 +9,8 @@ on:
       - 'content/**'
       - 'template/**'
       - '.github/**'
+      - 'src/**'
+      - 'config.toml'
 
 jobs:
   build-and-deploy:
