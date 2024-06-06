@@ -37,28 +37,40 @@ jobs:
         with:
           go-version: '1.22'  # 使用的 Go 版本
 
-      - name: chmod assets 755
-        run: chmod 755 ./assets
-
       - name: Run Go program
         run: go run ./src/  # 运行你的 Go 程序
-
 
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: github-pages
-          path: ./output  # 静态文件的目录
+          path: ./output
 
+#      - name: Deploy to GitHub Pages
+#        id: deployment
+#        uses: actions/deploy-pages@v4
+  #      - name: Deploy to GitHub Pages
+  #        uses: peaceiris/actions-gh-pages@v4
+  #        with:
+  #          publish_dir: ./output  # 静态文件的目录
+  #          github_token: ${{ secrets.GITHUB_TOKEN }}
+  #          publish_branch: gh-pages  # 发布到 gh-pages 分支
+  deploy:
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+      # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    # Specify runner + deployment step
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
-#      - name: Deploy to GitHub Pages
-#        uses: peaceiris/actions-gh-pages@v4
-#        with:
-#          publish_dir: ./output  # 静态文件的目录
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          publish_branch: gh-pages  # 发布到 gh-pages 分支
+        uses: actions/deploy-pages@v4 # or specific "vX.X.X" version tag for this action
