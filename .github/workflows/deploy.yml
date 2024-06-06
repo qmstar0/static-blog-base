@@ -1,10 +1,5 @@
 name: Deploy static website to GitHub Pages
 
-
-permissions:
-  contents: 'read'
-  id-token: 'write'
-
 on:
   workflow_dispatch:
   push:
@@ -21,6 +16,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -35,7 +34,7 @@ jobs:
         run: go run ./src/  # 运行你的 Go 程序
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: github-pages
           path: ./output  # 静态文件的目录
