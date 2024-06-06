@@ -44,7 +44,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          #          name: github-pages
+          name: github-pages
           path: ./output  # 静态文件的目录
 
       - name: Deploy to GitHub Pages
