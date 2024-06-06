@@ -207,7 +207,7 @@ func (b *Builder) CopyAssets(from, to string) {
 	case "windows":
 		_, err = exec.Command("xcopy", from, filepath.Join(to, from), "/E", "/I", "/H").Output()
 	case "linux", "darwin":
-		_, err = exec.Command("cp", "-r", from, to).Output()
+		_, err = exec.Command("cp", "-r", from, filepath.Join(to, from)).Output()
 	}
 	if err != nil {
 		log.Fatal("拷贝静态资源时", "err", err)
