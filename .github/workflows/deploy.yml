@@ -13,14 +13,16 @@ on:
       - 'src/**'
       - 'config.toml'
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build:
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     runs-on: ubuntu-latest
-
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,34 +31,21 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version: '1.22'  # 使用的 Go 版本
-
       - name: Run Go program
         run: go run ./src/  # 运行你的 Go 程序
-      - name: chmod dir
-        run: chmod 755 output
+
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: github-pages
+#          name: github-pages
           path: ./output  # 静态文件的目录
 
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v3
+        id: deployment
+        uses: actions/deploy-pages@v4
 #      - name: Deploy to GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v4
 #        with:
