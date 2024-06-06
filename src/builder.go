@@ -204,11 +204,13 @@ func (b *Builder) BuildPages(dir string, posts []Post, perPageNum int) {
 func (b *Builder) CopyAssets(from, to string) {
 	var err error
 	var output []byte
+	target := filepath.Join(to, from)
 	switch goos := runtime.GOOS; goos {
 	case "windows":
-		output, err = exec.Command("xcopy", from, filepath.Join(to, from), "/E", "/I", "/H").Output()
+		output, err = exec.Command("xcopy", from, target, "/E", "/I", "/H").Output()
 	case "linux", "darwin":
-		command := exec.Command("cp", "-r", "-v", from, filepath.Join(to, from))
+		_, _ = exec.Command("mkdir", target).Output()
+		command := exec.Command("cp", "-r", "-v", from, target)
 		log.Info(command.String())
 		output, err = command.Output()
 	}
