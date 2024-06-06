@@ -34,7 +34,7 @@ jobs:
         run: go run ./src/  # 运行你的 Go 程序
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v1
         with:
           name: github-pages
           path: ./output  # 静态文件的目录
