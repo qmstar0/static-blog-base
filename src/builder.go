@@ -209,7 +209,7 @@ func (b *Builder) CopyAssets(from, to string) {
 		output, err = exec.Command("xcopy", from, filepath.Join(to, from), "/E", "/I", "/H").Output()
 	case "linux", "darwin":
 
-		command := exec.Command("cp", "-r", from, filepath.Join(to, from))
+		command := exec.Command("mv", from, filepath.Join(to, from))
 		log.Info(command.String())
 		output, err = command.Output()
 	}
