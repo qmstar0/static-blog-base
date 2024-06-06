@@ -3,11 +3,12 @@ name: Deploy static website to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'assets/**'       # 监控 assets 目录下的所有文件
       - 'content/**'
       - 'template/**'
+      - '.github/**'
 
 jobs:
   build-and-deploy:
