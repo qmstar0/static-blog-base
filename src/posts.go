@@ -76,10 +76,13 @@ func (c Posts) Tags() []Tag {
 }
 
 func (c Posts) Recent() Posts {
-	var result = make(Posts, 5)
+	var result = make(Posts, 0, 5)
 
-	for i := 0; i < 5; i++ {
-		result[i] = c[i]
+	for i, post := range c {
+		if i >= 5 {
+			break
+		}
+		result = append(result, post)
 	}
 
 	return result
