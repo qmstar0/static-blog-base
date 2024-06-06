@@ -1,6 +1,7 @@
 name: Deploy static website to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
