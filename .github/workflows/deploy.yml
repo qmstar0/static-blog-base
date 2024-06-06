@@ -33,8 +33,11 @@ jobs:
       - name: Run Go program
         run: go run ./src/  # 运行你的 Go 程序
 
+      - name: Configure Pages
+        uses: actions/configure-pages@v4
+
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: github-pages
           path: ./output  # 静态文件的目录
@@ -53,9 +56,6 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./output
 #      - name: Deploy to GitHub Pages
 #        uses: peaceiris/actions-gh-pages@v4
 #        with:
