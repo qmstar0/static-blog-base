@@ -194,7 +194,7 @@ func (b *Builder) BuildPages(dir string, posts []Post, perPageNum int) {
 		if err := os.WriteFile(
 			path,
 			buffer.Bytes(),
-			0644,
+			0755,
 		); err != nil {
 			log.Fatal("向文件写入数据时", "err", err)
 		}
