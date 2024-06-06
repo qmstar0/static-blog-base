@@ -39,6 +39,9 @@ jobs:
       - name: Run Go program
         run: go run ./src/  # 运行你的 Go 程序
 
+      - name: chmod assets 755
+        run: chmod 755 ./output/assets
+
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
