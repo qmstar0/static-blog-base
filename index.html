@@ -1,0 +1,55 @@
+<html lang="zh">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="这里是 于野 的个人博客，与我一起探索学习更多知识 | 过去无法挽回，未来可以改变">
+<meta name="keywords" content="于野, qmstar0, QMstar, 于野QMstar, 探索日志, 探索, Blog, 博客, 个人网站, 个人博客, 互联网, Web, Python, JavaScript, Go, Rust, 程序, 设计, 代码">
+<link rel="stylesheet" href="/assets/fonts/firacode-regular.css"/>
+<link rel="stylesheet" href="/assets/fonts/lxgw-lite-regular.css"/>
+<link rel="stylesheet" href="/assets/v1/main.css"/>
+<link rel="icon" href="/assets/v1/favicon.ico"/>
+<title>于野 探索日志 | Blog</title>
+</head>
+
+<body>
+
+<div class="frame mx-auto my-0 max-w-[100%] flex flex-col"><header class="py-8 px-4 block font-[lxgw]">
+    <div class="float-left w-[100%]">
+        <A href="/">
+            <span class="block mb-2.5 select-none text-[30px]">于野</span>
+        </A>
+        <p class="text-[#8a8a8a] text-[16px]">悟已往之不谏，知来者之可追</p>
+    </div>
+</header><div class="p-2 flex-1">
+        <main id="app" class="float-left xl:w-[75%] xl:pr-[5%] mb-8 w-[100%] p-0 ease-in-out duration-100">
+        </main>
+        <aside class="float-right xl:w-[25%] mb-8 w-[100%] p-0"><ul><li class="aside-item">
+        <h3>最近发布</h3>
+        <ul class="ml-6"><li>
+                <a href="/post/test">Markdown 语法测试</a>
+            </li></ul>
+    </li><li class="aside-item">
+        <h3>分类</h3>
+        <ul class="ml-6"><li><a href="/categories/%e6%8e%a2%e7%b4%a2%e6%97%a5%e5%bf%97">探索日志</a></li></ul>
+    </li><li class="aside-item">
+        <h3>标签</h3>
+        <ul class="tag-cloud"><a href="/tags/python" class="tag-item mr-2">python</a><a href="/tags/Go" class="tag-item mr-2">Go</a></ul>
+    </li></ul></aside>
+    </div><footer class="mt-8 mb-4 text-center text-[0.9em] xl:text-[1em] text-[#8a8a8a] font-[lxgw]">
+    <p>© 2024 于野</p>
+</footer></div>
+
+</body>
+
+<script>
+    (async function () {
+        const href = new URL(window.location.href)
+        const urlParams = new URLSearchParams(href.search);
+        const paramValue = urlParams.get('page') ? urlParams.get('page') : 1;
+        const pathname = href.pathname.endsWith("/") ? href.pathname : href.pathname + "/"
+        const posts = await fetch(`${href.origin}${pathname}page_${paramValue}.html`).then(res => res.text())
+        document.querySelector("#app").innerHTML = posts
+
+
+    })()
+</script>
+</html>
