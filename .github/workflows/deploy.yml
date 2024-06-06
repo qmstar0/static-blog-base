@@ -31,9 +31,9 @@ jobs:
           go-version: '1.22'  # 使用的 Go 版本
 
       - name: Run Go program
-        run:
-          go run ./src/  # 运行你的 Go 程序
-          chmod 755 output
+        run: go run ./src/  # 运行你的 Go 程序
+      - name: chmod dir
+        run: chmod 755 output
       - name: Configure Pages
         uses: actions/configure-pages@v4
 
