@@ -15,11 +15,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
       id-token: write
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
@@ -40,12 +40,15 @@ jobs:
           path: ./output  # 静态文件的目录
 
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: read
       pages: write
       id-token: write
+    runs-on: ubuntu-latest
 
     steps:
       - name: Deploy to GitHub Pages
